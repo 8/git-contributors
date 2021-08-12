@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Parameters.fs" />
+    <Compile Include="MailMaps.fs" />
+    <Compile Include="MailMapFile.fs" />
+    <Compile Include="Contributor.fs" />
+    <Compile Include="Program.fs" />
+    <Compile Include="EntryPoint.fs" />
+    <Content Include="linux.mailmap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="FsUnit" Version="4.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="NCrunch.Framework" Version="4.7.0.4" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GitContributors\GitContributors.fsproj" />
+  </ItemGroup>
+
+</Project>
