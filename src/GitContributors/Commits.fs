@@ -41,7 +41,11 @@ module Rev =
     static member From s = from s
 
 let fromRepo (repo : Repository) revision =
-  // todo use revision to control the returned commits
   let revisionFilter = revision |> Option.bind Rev.RevisionFilter.From
 
-  repo.Commits
+  // todo use revision to control the returned commits
+  match revisionFilter with
+  | None -> repo.Commits
+  | Some (Rev.RevisionFilter.Revision revision) -> repo.Commits
+  | Some (Rev.RevisionFilter.RevisionRange range) -> repo.Commits
+
