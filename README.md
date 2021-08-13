@@ -99,6 +99,6 @@ git-contributor v0.1.0 written by Martin Kramer / www.lostindetails.com / http:/
 - [Spectre.Console](https://spectreconsole.net) <- Table + BarChart
 
 ## Todo
-- [ ] Get it working on WSL / Linux
+- [x] ~~Get it working on WSL / Linux~~
 - [ ] Implement real csv export
 - [ ] Support other commit origins than HEAD
