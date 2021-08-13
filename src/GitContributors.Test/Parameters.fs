@@ -144,3 +144,8 @@ let ``parameter from "-o=test.csv" should set OutputFormat 'Csv' and OutputFile 
   let result = Parameters.FromArgs[|"-o=test.csv"|]
   result.OutputFormat |> should equal (Some OutputFormat.Csv)
   result.OutputFile |> should equal (Some "test.csv")
+
+[<Test>]
+let ``parameter from -r dev..master should set revision to 'dev..master'`` () =
+  let result = Parameters.FromArgs[|"-r=dev..master"|]
+  result.Revision |> should equal (Some "dev..master")

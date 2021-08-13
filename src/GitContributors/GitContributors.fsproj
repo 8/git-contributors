@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Compile Include="Parameters.fs" />
+    <Compile Include="Commits.fs" />
     <Compile Include="Contributor.fs" />
     <Compile Include="MailMaps.fs" />
     <Compile Include="MailMapFile.fs" />
