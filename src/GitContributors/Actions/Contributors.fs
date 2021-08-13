@@ -21,7 +21,7 @@ let loadMailMaps file =
 
 let repoPathFromParams p =
   p.Directory
-  |> Option.defaultValue ""
+  |> Option.defaultValue "./"
   |> LibGit2Sharp.Repository.Discover
   |> Option.ofObj
 
