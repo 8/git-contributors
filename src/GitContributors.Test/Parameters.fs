@@ -40,22 +40,22 @@ let ``parameters from empty args should have asc sorting`` () =
   result.SortDirection |> should equal None
 
 [<Test>]
-let ```parameters from "--sort-desc" should have desc sorting`` () =
+let ``parameters from "--sort-desc" should have desc sorting`` () =
   let result = Parameters.FromArgs[| "--sort-desc" |]
   result.SortDirection |> should equal (Some SortDirection.Descending)
 
 [<Test>]
-let ```parameters from "--sort-asc" should have asc sorting`` () =
+let ``parameters from "--sort-asc" should have asc sorting`` () =
   let result = Parameters.FromArgs[| "--sort-asc" |]
   result.SortDirection |> should equal (Some SortDirection.Ascending)
 
 [<Test>]
-let ```parameters from "--sort-direction asc" should have asc sorting`` () =
+let ``parameters from "--sort-direction asc" should have asc sorting`` () =
   let result = Parameters.FromArgs[| "--sort-direction"; "asc" |]
   result.SortDirection |> should equal (Some SortDirection.Ascending)
 
 [<Test>]
-let ```parameters from "--sort-direction desc" should have desc sorting`` () =
+let ``parameters from "--sort-direction desc" should have desc sorting`` () =
   let result = Parameters.FromArgs[| "--sort-direction"; "desc" |]
   result.SortDirection |> should equal (Some SortDirection.Descending)
 
