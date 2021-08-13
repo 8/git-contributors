@@ -24,11 +24,11 @@ git-contributors --barchart
 ```
 ![barchart.png](./docs/screenshot-barchart.png)
 
-- Pseude CSV (not escaping separators yet)
+- Or Export as CSV
 ```
-git-contributor --separator=","
+git-contributor -o test.csv
 ```
-![pseudo-csv](docs/screenshot-separator.png)
+![csv](docs/screenshot-csv.png)
 
 - Use git submodule support (no '-' between git and contributor)
 ```
@@ -62,7 +62,7 @@ or execute `install.cmd` on windows which does exactly that.
 
 ## Update
 1. Rebuild with `dotnet pack -c Release` like previously
-2. Update
+2. Updatex
 ```
 dotnet tool update --global --add-source ./src/GitContributors/nupkg GitContributors
 ```
@@ -70,7 +70,7 @@ dotnet tool update --global --add-source ./src/GitContributors/nupkg GitContribu
 ## Usage
 Get usage info by executing `git-contributor -h`
 ```
-git-contributor v0.1.0 written by Martin Kramer / www.lostindetails.com / http://github.com/8/git-contributors
+git-contributor v0.4.0 written by Martin Kramer / www.lostindetails.com / http://github.com/8/git-contributors
       --directory, -d=VALUE  Sets the path to the git directory, (default: '')
       --help, -h, -?         Shows this help description.
       --mailmap-file, -f=VALUE
@@ -87,12 +87,15 @@ git-contributor v0.1.0 written by Martin Kramer / www.lostindetails.com / http:/
       --sort-committed, --sc Sorts contributors by the number of committed
                                commits
       --format=VALUE         Selects the output format. Options: 'stdio (
-                               default), table, barchar'
+                               default), table, barchart or csv'
       --table                Selects output format 'table'
       --barchar, --bar       Selects output format 'barchart'
+      --csv                  Selects output format 'csv'
+      --output, -o=VALUE     Csv Output filename (default: 'out.csv'), implies
+                               output format 'csv'
       --stdio                Selects output format 'stdio'
       --separator, --sep=VALUE
-                             Sets the separator used for stdio output
+                             Sets the separator used for stdio and csv output
 ```
 
 ## Special Thanks
@@ -100,5 +103,5 @@ git-contributor v0.1.0 written by Martin Kramer / www.lostindetails.com / http:/
 
 ## Todo
 - [x] ~~Get it working on WSL / Linux~~
-- [ ] Implement real csv export
+- [x] ~~Implement real csv export~~
 - [ ] Support other commit origins than HEAD
