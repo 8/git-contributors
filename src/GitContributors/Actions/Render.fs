@@ -77,10 +77,43 @@ module Console =
       barchartFrom p contributors
       |> AnsiConsole.Render
 
-//module Csv =
-//  let printContributors io p contributors =
-//    io.Error.WriteLine ("OutputFormat.Csv is not implemented!")
-//    ()
+module Csv =
+  
+  open CsvHelper
+  open CsvHelper.Configuration
+
+  type CsvRecord = {
+    Name : string
+    Email : string
+    Committed : int
+    Authored : int
+  }
+
+  type CsvRecord with
+    static member From c = {
+        Name = c.Contributor.Name;
+        Email = c.Contributor.Email;
+        Committed = c.Stats.Committed;
+        Authored = c.Stats.Authored
+    }
+
+  let config p =
+    let c = CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
+    p.Separator |> Option.iter (fun s -> c.Delimiter <- s)
+    c
+
+  let textWriter p =
+    p.OutputFile
+    |> Option.defaultValue "out.csv"
+    |> System.IO.File.CreateText
+
+  let printContributors io p contributors =
+    use writer = new CsvWriter(textWriter p, config p)
+    writer.WriteHeader<CsvRecord>()
+    writer.NextRecord()
+    contributors
+    |> Array.map CsvRecord.From
+    |> writer.WriteRecords
 
 let printContributors io p contributors =
   
@@ -88,7 +121,7 @@ let printContributors io p contributors =
     match p.OutputFormat with
     | Some OutputFormat.ConsoleTable -> Console.Table.printContributors
     | Some OutputFormat.ConsoleBarchart -> Console.Barchart.printContributors
-    //| Some OutputFormat.Csv -> Csv.printContributors
+    | Some OutputFormat.Csv -> Csv.printContributors
     | None | Some OutputFormat.Stdio -> Stdio.printContributors
 
   print io p contributors

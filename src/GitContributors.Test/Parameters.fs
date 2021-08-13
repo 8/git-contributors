@@ -99,20 +99,20 @@ let ``parameters from "-bar" should set OutputFormat to Barchar`` () =
   let result = Parameters.FromArgs[|"-bar"|]
   result.OutputFormat |> should equal (Some OutputFormat.ConsoleBarchart)
 
-//[<Test>]
-//let ``parameters from "--csv" should set OutputFormat to Csv`` () =
-//  let result = Parameters.FromArgs[|"-csv"|]
-//  result.OutputFormat |> should equal (Some OutputFormat.Csv)
+[<Test>]
+let ``parameters from "--csv" should set OutputFormat to Csv`` () =
+  let result = Parameters.FromArgs[|"-csv"|]
+  result.OutputFormat |> should equal (Some OutputFormat.Csv)
 
 [<Test>]
 let ``parameters from "--stdio" should set OutputFormat to Stdio`` () =
   let result = Parameters.FromArgs[|"-stdio"|]
   result.OutputFormat |> should equal (Some OutputFormat.Stdio)
 
-//[<Test>]
-//let ``parameters from "--format=csv" should set OutputFormat to Csv`` () =
-//  let result = Parameters.FromArgs[|"--format"; "csv"|]
-//  result.OutputFormat |> should equal (Some OutputFormat.Csv)
+[<Test>]
+let ``parameters from "--format=csv" should set OutputFormat to Csv`` () =
+  let result = Parameters.FromArgs[|"--format"; "csv"|]
+  result.OutputFormat |> should equal (Some OutputFormat.Csv)
 
 [<Test>]
 let ``parameters from "--format=barchart" should set OutputFormat to Barchart`` () =
@@ -138,3 +138,9 @@ let ``parameters from empty args should not set a Separator`` () =
 let ``parameters from "--separator=," should set Separator to ,`` () =
   let result = Parameters.FromArgs[|"--separator"; ","|]
   result.Separator |> should equal (Some ",")
+
+[<Test>]
+let ``parameter from "-o=test.csv" should set OutputFormat 'Csv' and OutputFile 'test.csv'`` () =
+  let result = Parameters.FromArgs[|"-o=test.csv"|]
+  result.OutputFormat |> should equal (Some OutputFormat.Csv)
+  result.OutputFile |> should equal (Some "test.csv")

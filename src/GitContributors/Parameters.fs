@@ -19,7 +19,7 @@ type OutputFormat =
   | Stdio
   | ConsoleTable
   | ConsoleBarchart
-  //| Csv // todo
+  | Csv
 
 type Parameters = {
   Action : Action
@@ -29,6 +29,7 @@ type Parameters = {
   SortDirection : SortDirection option
   SortCriteria : SortCriteria option
   OutputFormat : OutputFormat option
+  OutputFile : string option
   Separator : string option
 }
 
@@ -39,6 +40,7 @@ let fromArgs (args: string array) : Parameters =
   let mutable sortDirection : SortDirection option = None
   let mutable sortCriteria : SortCriteria option = None
   let mutable outputFormat : OutputFormat option = None
+  let mutable outputFile : string option = None
   let mutable separator : string option = None
 
   let parseSortDirection (s:string) =
@@ -51,7 +53,7 @@ let fromArgs (args: string array) : Parameters =
     match s.ToLowerInvariant() with
     | "t" | "table" -> Some OutputFormat.ConsoleTable
     | "b" | "bar" | "barchart" -> Some OutputFormat.ConsoleBarchart
-    //| "csv" -> Some OutputFormat.Csv
+    | "csv" -> Some OutputFormat.Csv
     | "stdio" -> Some OutputFormat.Stdio
     | _ -> None
 
@@ -67,12 +69,13 @@ let fromArgs (args: string array) : Parameters =
       .Add("sort-email|se", "Sorts contributors by Email", fun s -> sortCriteria  <- Some SortCriteria.Email)
       .Add("sort-authored|sa", "Sorts contributors by the number of authored commits", fun s -> sortCriteria <- Some SortCriteria.Authored)
       .Add("sort-committed|sc", "Sorts contributors by the number of committed commits", fun s -> sortCriteria <- Some SortCriteria.Committed)
-      .Add("format=", "Selects the output format. Options: 'stdio (default), table, barchar'", fun s -> outputFormat <- parseOutputFormat s)
+      .Add("format=", "Selects the output format. Options: 'stdio (default), table, barchart or csv'", fun s -> outputFormat <- parseOutputFormat s)
       .Add("table", "Selects output format 'table'", fun s -> outputFormat <- Some OutputFormat.ConsoleTable)
       .Add("barchar|bar", "Selects output format 'barchart'", fun s -> outputFormat <- Some OutputFormat.ConsoleBarchart)
-      //.Add("csv", "Selects output format 'csv'", fun s -> outputFormat <- Some OutputFormat.Csv)
+      .Add("csv", "Selects output format 'csv'", fun s -> outputFormat <- Some OutputFormat.Csv)
+      .Add("output|o=", "Csv Output filename (default: 'out.csv'), implies output format 'csv' ", fun s -> outputFile <- Some s; outputFormat <- Some OutputFormat.Csv)
       .Add("stdio", "Selects output format 'stdio'", fun s -> outputFormat <- Some OutputFormat.Stdio)
-      .Add("separator|sep=", "Sets the separator used for stdio output", fun s -> separator <- Some s)
+      .Add("separator|sep=", "Sets the separator used for stdio and csv output", fun s -> separator <- Some s)
 
   let rest = options.Parse(args)
   
@@ -89,6 +92,7 @@ let fromArgs (args: string array) : Parameters =
     SortDirection = sortDirection
     SortCriteria = sortCriteria
     OutputFormat = outputFormat
+    OutputFile = outputFile
     Separator = separator
   }
 
