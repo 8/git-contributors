@@ -39,14 +39,25 @@ let ``run with default params`` () =
   let result = runProgram parameters
   ()
 
+let validRepoPath =
+  NCrunch.Framework.NCrunchEnvironment.GetOriginalProjectPath()
+  |> System.IO.Path.GetDirectoryName
+
 [<Test>]
 let ``run with valid git repo`` () =
-  
-  let location =
-    NCrunch.Framework.NCrunchEnvironment.GetOriginalProjectPath()
-    |> System.IO.Path.GetDirectoryName
+  let parameters = Parameters.fromArgs([|"-d"; validRepoPath|])
+  let result = runProgram parameters
+  ()
 
-  let parameters = Parameters.fromArgs([|"-d"; location|])
+[<Test>]
+let ``run with "-r master"`` () =
+  let parameters = Parameters.fromArgs([|"-d"; validRepoPath; "-r"; "master"|])
+  let result = runProgram parameters
+  ()
+
+[<Test>]
+let ``run with "-r master..master" `` () =
+  let parameters = Parameters.fromArgs([|"-d"; validRepoPath; "-r"; "master..master"|])
   let result = runProgram parameters
   ()
 

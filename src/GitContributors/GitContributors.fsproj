@@ -6,11 +6,12 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>git-contributor</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <Version>0.4.0</Version>
+    <Version>0.5.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="Parameters.fs" />
+    <Compile Include="Commits.fs" />
     <Compile Include="Contributor.fs" />
     <Compile Include="MailMaps.fs" />
     <Compile Include="MailMapFile.fs" />

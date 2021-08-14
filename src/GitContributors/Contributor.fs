@@ -25,13 +25,12 @@ type Contributor with
     Contributor.FromSignature(commit.Author), Contributor.FromSignature(commit.Committer)
 
 type ContributorInfo with
-  static member FromRepo(path : string) : ContributorInfo array =
-    use repo = new Repository(path)
-    
-    let contributors = repo.Commits |> Seq.map Contributor.FromCommit |> Seq.toArray
+
+  static member FromCommits(commits) : ContributorInfo array =
+    let contributors = commits |> Seq.map Contributor.FromCommit |> Seq.toArray
     let authors      = contributors |> Seq.map fst |> Seq.groupBy id |> Seq.map (fun (c,g) -> c, g |> Seq.length) |> Map
     let committers   = contributors |> Seq.map snd |> Seq.groupBy id |> Seq.map (fun (c,g) -> c, g |> Seq.length) |> Map
-    
+
     contributors
     |> Seq.collect (fun (c,a) -> [c;a])
     |> Seq.distinct

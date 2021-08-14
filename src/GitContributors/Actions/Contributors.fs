@@ -5,9 +5,10 @@ open MailMaps
 open Contributor
 open Parameters
 
-let loadContributors repoPath =
-  repoPath
-  |> ContributorInfo.FromRepo
+let loadContributors repoPath revision =
+  use repo = new LibGit2Sharp.Repository(repoPath)
+  Commits.fromRepo repo revision
+  |> ContributorInfo.FromCommits
   |> Seq.toArray
 
 let loadMailMaps file =
@@ -25,18 +26,18 @@ let repoPathFromParams p =
   |> LibGit2Sharp.Repository.Discover
   |> Option.ofObj
 
-let contributorsFrom repoPath =
+let contributorsFrom repoPath revision =
   let mailMaps =
     MailMapFile.MailMapFile.FromPath repoPath
     |> Option.map loadMailMaps
     |> Option.defaultValue [||]
-  let contributors = loadContributors repoPath
+  let contributors = loadContributors repoPath revision
   mergeMailMaps contributors mailMaps
 
 let mergeContributors p =
   match repoPathFromParams p with
   | None -> Error "Not a git directory"
-  | Some repoPath -> repoPath |> contributorsFrom |> Ok
+  | Some repoPath -> contributorsFrom repoPath p.Revision |> Ok
  
 
 let sortContributors p contributors =

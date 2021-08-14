@@ -31,6 +31,7 @@ type Parameters = {
   OutputFormat : OutputFormat option
   OutputFile : string option
   Separator : string option
+  Revision : string option
 }
 
 let fromArgs (args: string array) : Parameters =
@@ -42,6 +43,7 @@ let fromArgs (args: string array) : Parameters =
   let mutable outputFormat : OutputFormat option = None
   let mutable outputFile : string option = None
   let mutable separator : string option = None
+  let mutable revision : string option = None
 
   let parseSortDirection (s:string) =
     match s.ToLowerInvariant() with 
@@ -76,6 +78,7 @@ let fromArgs (args: string array) : Parameters =
       .Add("output|o=", "Csv Output filename (default: 'out.csv'), implies output format 'csv' ", fun s -> outputFile <- Some s; outputFormat <- Some OutputFormat.Csv)
       .Add("stdio", "Selects output format 'stdio'", fun s -> outputFormat <- Some OutputFormat.Stdio)
       .Add("separator|sep=", "Sets the separator used for stdio and csv output", fun s -> separator <- Some s)
+      .Add("revision|r=", "Specifies the revision from which to look for commits (defaults: HEAD)", fun s -> revision <- Some s)
 
   let rest = options.Parse(args)
   
@@ -94,6 +97,7 @@ let fromArgs (args: string array) : Parameters =
     OutputFormat = outputFormat
     OutputFile = outputFile
     Separator = separator
+    Revision = revision
   }
 
 type Parameters with

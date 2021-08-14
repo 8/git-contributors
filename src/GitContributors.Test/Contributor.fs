@@ -15,10 +15,11 @@ let printf (s : string) = TestContext.Write s
 let ``Load Contributors from Repo`` () =
   
   // arrange
-  let repo = """D:\downloads\repositories\haf\http.fs"""
+  let repoPath = """D:\downloads\repositories\haf\http.fs"""
   
   // act
-  let result, elapsed = measure (fun () -> ContributorInfo.FromRepo repo)
+  use repo = new LibGit2Sharp.Repository(repoPath)
+  let result, elapsed = measure (fun () -> repo.Commits |> ContributorInfo.FromCommits)
   
   // assert
   result.Length |> should equal 38
