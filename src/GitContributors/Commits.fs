@@ -40,12 +40,20 @@ module Rev =
   type RevisionFilter with
     static member From s = from s
 
+let commitFilter repo revisionFilter =
+  let commitFilter = CommitFilter()
+  // todo
+  commitFilter
+
+let commits (repo : Repository) (revision : Rev.RevisionFilter option): Commit seq =
+  match revision with
+  | None -> upcast repo.Commits
+  | Some revisionFilter ->
+    let commitFilter = revisionFilter |> (commitFilter repo)
+    upcast repo.Commits.QueryBy(commitFilter) 
+
 let fromRepo (repo : Repository) revision =
-  let revisionFilter = revision |> Option.bind Rev.RevisionFilter.From
 
-  // todo use revision to control the returned commits
-  match revisionFilter with
-  | None -> repo.Commits
-  | Some (Rev.RevisionFilter.Revision revision) -> repo.Commits
-  | Some (Rev.RevisionFilter.RevisionRange range) -> repo.Commits
-
+  revision
+  |> Option.bind Rev.RevisionFilter.From
+  |> commits repo

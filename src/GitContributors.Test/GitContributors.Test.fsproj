@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="LibGit2Sharp.fs" />
     <Compile Include="Parameters.fs" />
     <Compile Include="MailMaps.fs" />
     <Compile Include="MailMapFile.fs" />
