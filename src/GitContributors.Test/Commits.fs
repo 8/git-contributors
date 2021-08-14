@@ -1,4 +1,4 @@
-﻿module Commits.Rev.Test
+﻿module Commits.Test
 
 open NUnit.Framework
 open FsUnit
