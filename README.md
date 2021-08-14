@@ -6,39 +6,51 @@ You can find out more about [dotnet global and locals tools here](https://docs.m
 
 ## Examples
 - Execute `git-contributor`
-```
-git-contributor
-```
-to display a list of all contributors whose commits are reachable over HEAD.
+  ```
+  git-contributor
+  ```
+  to display a list of all contributors whose commits are reachable over HEAD.
 
 - Or display a table of the contributors, e.g. by executing:
-```
-git-contributors --table -sa
-```
-To display the contributors inside a table.
-![table.png](./docs/screenshot-table.png)
+  ```
+  git-contributors --table -sa
+  ```
+  To display the contributors inside a table.
+  ![table.png](./docs/screenshot-table.png)
 
 - Or display a barchart of the contributors, e.g. by executing:
-```
-git-contributors --barchart
-```
-![barchart.png](./docs/screenshot-barchart.png)
+  ```
+  git-contributors --barchart
+  ```
+  ![barchart.png](./docs/screenshot-barchart.png)
 
 - Or Export as CSV
-```
-git-contributor -o test.csv
-```
-![csv](docs/screenshot-csv.png)
+  ```
+  git-contributor -o test.csv
+  ```
+  ![csv](./docs/screenshot-csv.png)
+
+- Filter by branch / tag / commit hash
+  ```
+  git-contributor -r master
+  ```
+  ![filter by branch](./docs/screenshot-filter-by-branch.png)
+
+- Filter by range
+  ```
+  git-contributor -r revision..master
+  ```
+  ![filter by range](./docs/screenshot-filter-by-range.png)
 
 - Use git submodule support (no '-' between git and contributor)
-```
-git contributor
-```
+  ```
+  git contributor
+  ```
 
 - Display Usage info
-```
-git-contributor -h
-```
+  ```
+  git-contributor -h
+  ```
 
 ## Why install as a dotnet global tool?
 - Dotnet tools when installed  globally, are added to your PATH variable automatically, which makes them available over the commandline everywhere.
@@ -62,7 +74,7 @@ or execute `install.cmd` on windows which does exactly that.
 
 ## Update
 1. Rebuild with `dotnet pack -c Release` like previously
-2. Updatex
+2. Update
 ```
 dotnet tool update --global --add-source ./src/GitContributors/nupkg GitContributors
 ```
@@ -70,7 +82,8 @@ dotnet tool update --global --add-source ./src/GitContributors/nupkg GitContribu
 ## Usage
 Get usage info by executing `git-contributor -h`
 ```
-git-contributor v0.4.0 written by Martin Kramer / www.lostindetails.com / http://github.com/8/git-contributors
+git-contributor v0.5.0 written by Martin Kramer / www.lostindetails.com / http://github.com/8/git-contributor
+s
       --directory, -d=VALUE  Sets the path to the git directory, (default: '')
       --help, -h, -?         Shows this help description.
       --mailmap-file, -f=VALUE
@@ -96,6 +109,8 @@ git-contributor v0.4.0 written by Martin Kramer / www.lostindetails.com / http:/
       --stdio                Selects output format 'stdio'
       --separator, --sep=VALUE
                              Sets the separator used for stdio and csv output
+      --revision, -r=VALUE   Specified the revision from which to look for
+                               commits (defaults: HEAD)
 ```
 
 ## Special Thanks
@@ -104,4 +119,4 @@ git-contributor v0.4.0 written by Martin Kramer / www.lostindetails.com / http:/
 ## Todo
 - [x] ~~Get it working on WSL / Linux~~
 - [x] ~~Implement real csv export~~
-- [ ] Support other commit origins than HEAD
+- [x] ~~Support other commit origins than HEAD~~
