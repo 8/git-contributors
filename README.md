@@ -120,3 +120,8 @@ s
 - [x] ~~Get it working on WSL / Linux~~
 - [x] ~~Implement real csv export~~
 - [x] ~~Support other commit origins than HEAD~~
+- [ ] Change default sorting to authored
+- [ ] Consistent Error handling
+- [ ] Setup CI
+- [ ] Publish to nuget
+- [ ] revisit mailmap support
