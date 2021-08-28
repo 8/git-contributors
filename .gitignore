@@ -37,3 +37,6 @@ _NCrunch_git-contributors/
 *.ncrunchproject
 nupkg/
 *.zip
+
+.fake
+.ionide
