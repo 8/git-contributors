@@ -1,4 +1,4 @@
-module MailMap.Test
+module Test.MailMaps
 
 open Contributor
 open NUnit.Framework
