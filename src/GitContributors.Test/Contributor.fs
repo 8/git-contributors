@@ -10,9 +10,6 @@ let measure f =
   let sw = Stopwatch.StartNew ()
   f (), sw.Elapsed
 
-let printfn (s : string) = TestContext.WriteLine s
-let printf (s : string) = TestContext.Write s
-
 [<Test>]
 let ``Load Contributors from Repo`` () =
   

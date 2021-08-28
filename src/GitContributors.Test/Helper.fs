@@ -9,3 +9,7 @@
       |> Option.defaultValue System.Environment.CurrentDirectory
       |> System.IO.Path.GetDirectoryName
       |> LibGit2Sharp.Repository.Discover
+
+    let printfn (s:string) = NUnit.Framework.TestContext.WriteLine s 
+
+    let printf (s : string) = NUnit.Framework.TestContext.Write s

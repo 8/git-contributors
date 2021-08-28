@@ -4,8 +4,6 @@ open FsUnit
 open NUnit.Framework
 open LibGit2Sharp
 
-let printfn (s:string) = TestContext.WriteLine(s)
-
 let printCommit (c:Commit) =
   printfn $"{c.Sha}\n{c.Author.Name} <{c.Author.Email}>\n{c.Message}\n"
   

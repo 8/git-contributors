@@ -6,8 +6,6 @@ open MailMapFile
 
 let repoPath = ""
 
-let printfn (text : string) = TestContext.WriteLine(text)
-
 [<Test>]
 let ``MailMapFile.fromPath()`` () =
 
