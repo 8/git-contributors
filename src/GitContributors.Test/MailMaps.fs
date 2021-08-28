@@ -5,8 +5,6 @@ open NUnit.Framework
 open MailMaps
 open FsUnit
 
-let printfn (s:string) = TestContext.WriteLine s 
-
 [<Test>]
 let Parse_Linux_MailMap_File () =
   
@@ -19,21 +17,21 @@ let Parse_Linux_MailMap_File () =
   let parsed = mailMaps |> Seq.choose id |> Seq.length
   
   // assert
-  printfn $"mailMaps: {mailMaps.Length}"
-  printfn $"parsed: {parsed}"
+//  printfn $"mailMaps: {mailMaps.Length}"
+//  printfn $"parsed: {parsed}"
   parsed |> should equal expectedParsed
   
-  mailMaps
-  |> Seq.iter (fun m ->
-    let t =
-      match m with
-      | Some (MailMapForm1(_)) -> "1"
-      | Some (MailMapForm2(_)) -> "2"
-      | Some (MailMapForm3(_)) -> "3"
-      | Some (MailMapForm4(_)) -> "4"
-      | None -> "None"
-      
-    printfn $"{t}: {m}")
+//  mailMaps
+//  |> Seq.iter (fun m ->
+//    let t =
+//      match m with
+//      | Some (MailMapForm1(_)) -> "1"
+//      | Some (MailMapForm2(_)) -> "2"
+//      | Some (MailMapForm3(_)) -> "3"
+//      | Some (MailMapForm4(_)) -> "4"
+//      | None -> "None"
+//      
+//    printfn $"{t}: {m}")
 
   ()
 

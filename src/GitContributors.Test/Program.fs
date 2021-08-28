@@ -45,13 +45,13 @@ let ``run with valid git repo`` () =
   let result = runProgram parameters
   ()
 
-[<Test>]
+[<Test; IgnoreInCi>]
 let ``run with "-r master"`` () =
   let parameters = Parameters.fromArgs([|"-d"; repoPath; "-r"; "master"|])
   let result = runProgram parameters
   ()
 
-[<Test>]
+[<Test; IgnoreInCi>]
 let ``run with "-r master..master" `` () =
   let parameters = Parameters.fromArgs([|"-d"; repoPath; "-r"; "master..master"|])
   let result = runProgram parameters

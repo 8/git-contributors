@@ -1,0 +1,13 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: run tests
+        run: dotnet test -l "console;verbosity=normal" --filter TestCategory!=IgnoreInCi
+      - name: create the nuget package
+        run: dotnet pack -c Release

@@ -4,8 +4,6 @@ open FsUnit
 open NUnit.Framework
 open LibGit2Sharp
 
-let printfn (s:string) = TestContext.WriteLine(s)
-
 let printCommit (c:Commit) =
   printfn $"{c.Sha}\n{c.Author.Name} <{c.Author.Email}>\n{c.Message}\n"
   
@@ -16,7 +14,7 @@ let ``get commits`` () =
   printfn $"Commits: {commits.Length}\n"
   commits |> Seq.iter printCommit
 
-[<Test>]
+[<Test; IgnoreInCi>]
 let ``filter commits from branch`` () =
   use repo = new Repository(repoPath)
   let branch = repo.Branches.["master"]
