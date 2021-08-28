@@ -4,6 +4,26 @@
 
 You can find out more about [dotnet global and locals tools here](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools).
 
+## Getting Started
+1. Install git-contributor as a dotnet global tool:
+```
+dotnet tool install -g GitContributors
+```
+
+2. In a git repository, execute:
+```
+git contributor
+```
+
+And you should get an output similar to:
+```
+Name    Email   Committed       Authored
+MartinK mdk@lostindetails.com   1       0
+8       mdk@lostindetails.com   3       0
+GitHub  noreply@github.com      0       4
+mdk     mdk@lostindetails.com   12      12
+```
+
 ## Examples
 - Execute `git-contributor`
   ```
@@ -141,7 +161,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 - [x] ~~Support other commit origins than HEAD~~
 - [x] ~~Add License~~
 - [x] ~~Setup CI~~
+- [x] ~~Publish to nuget~~
 - [ ] Change default sorting to authored
 - [ ] Consistent Error handling
-- [ ] Publish to nuget
 - [ ] revisit mailmap support
