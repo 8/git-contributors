@@ -140,8 +140,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 - [x] ~~Implement real csv export~~
 - [x] ~~Support other commit origins than HEAD~~
 - [x] ~~Add License~~
+- [x] ~~Setup CI~~
 - [ ] Change default sorting to authored
 - [ ] Consistent Error handling
-- [ ] Setup CI
 - [ ] Publish to nuget
 - [ ] revisit mailmap support
