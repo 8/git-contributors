@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: run tests
-        run: dotnet test
+        run: dotnet test -v n
       - name: create the nuget package
         run: dotnet pack -c Release
