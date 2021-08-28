@@ -8,6 +8,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: run tests
-        run: dotnet test -l "console;verbosity=normal"
+        run: dotnet test -l "console;verbosity=normal" --filter TestCategory!=IgnoreInCi
       - name: create the nuget package
         run: dotnet pack -c Release

@@ -13,3 +13,5 @@
     let printfn (s:string) = NUnit.Framework.TestContext.WriteLine s 
 
     let printf (s : string) = NUnit.Framework.TestContext.Write s
+
+  type IgnoreInCiAttribute() = inherit NUnit.Framework.CategoryAttribute("IgnoreInCi")

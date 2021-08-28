@@ -14,7 +14,7 @@ let ``get commits`` () =
   printfn $"Commits: {commits.Length}\n"
   commits |> Seq.iter printCommit
 
-[<Test>]
+[<Test; IgnoreInCi>]
 let ``filter commits from branch`` () =
   use repo = new Repository(repoPath)
   let branch = repo.Branches.["master"]
