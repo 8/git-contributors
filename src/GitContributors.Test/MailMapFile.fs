@@ -1,7 +1,8 @@
-﻿module MailMapFile.Test
+﻿module Test.MailMapFile
 
 open NUnit.Framework
 open FsUnit
+open MailMapFile
 
 let repoPath = ""
 

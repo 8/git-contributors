@@ -8,10 +8,6 @@ let printfn (s:string) = TestContext.WriteLine(s)
 
 let printCommit (c:Commit) =
   printfn $"{c.Sha}\n{c.Author.Name} <{c.Author.Email}>\n{c.Message}\n"
-
-let repoPath =
-  NCrunch.Framework.NCrunchEnvironment.GetOriginalSolutionPath()
-  |> System.IO.Path.GetDirectoryName
   
 [<Test>]
 let ``get commits`` () =
