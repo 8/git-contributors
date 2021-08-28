@@ -5,5 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: run tests
+        run: dotnet test
       - name: create the nuget package
         run: dotnet pack -c Release
