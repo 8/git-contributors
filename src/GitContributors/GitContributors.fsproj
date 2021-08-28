@@ -9,6 +9,12 @@
     <Version>0.5.0</Version>
     <PackageLicenseExpression>MIT OR WTFPL</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Martin Kramer</Authors>
+    <Copyright>Copyright Martin Kramer (https://www.lostindetails.com)</Copyright>
+    <RepositoryUrl>https://github.com/8/git-contributors</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>git-contributor git contributor</PackageTags>
+    <Description>git-contributor is a dotnet commandline tool for display git contributors</Description>
   </PropertyGroup>
 
   <ItemGroup>
