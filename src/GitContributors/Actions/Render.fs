@@ -9,8 +9,8 @@ module Stdio =
     let fields = [
       c.Contributor.Name
       $"{c.Contributor.Email}"
-      $"{c.Stats.Authored}"
       $"{c.Stats.Committed}"
+      $"{c.Stats.Authored}"
     ]
     System.String.Join(separator, fields)
 
