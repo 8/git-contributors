@@ -6,7 +6,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>git-contributor</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <PackageLicenseExpression>MIT OR WTFPL</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Martin Kramer</Authors>
